@@ -1,0 +1,558 @@
+/* ============================================================
+   Персонаж
+   ============================================================ */
+
+/* --- Контейнер, свечение, тень и парение --- */
+
+.mas {
+  position: relative;
+  z-index: 5;
+  width: 210px;
+  height: 200px;
+  margin: 10px auto 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+  transform: translate(var(--dx,0px), var(--dy,0px)) scale(var(--s,1));
+  transition: transform .55s cubic-bezier(.3, 1.6, .5, 1);
+  animation: pop .9s cubic-bezier(.2, 1.6, .4, 1) backwards;
+}
+
+.fl {
+  position: absolute;
+  inset: 0;
+  animation: fl 4s ease-in-out infinite alternate;
+}
+
+.mas::before {
+  content: "";
+  position: absolute;
+  inset: -46px;
+  z-index: -1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(139, 92, 255, .5),
+      transparent 65%);
+  filter: blur(10px);
+  animation: gp 3.2s ease-in-out infinite alternate;
+}
+
+.mas::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -28px;
+  width: 150px;
+  height: 18px;
+  margin-left: -75px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .5);
+  filter: blur(8px);
+  animation: sw 4s ease-in-out infinite alternate;
+}
+
+/* --- Уши --- */
+
+.ear {
+  position: absolute;
+  top: -16px;
+  width: 46px;
+  height: 60px;
+  background: var(--b);
+  border-radius: 50% 50% 0 0;
+}
+
+.ear.l {
+  left: 22px;
+  transform: rotate(-18deg);
+}
+
+.ear.r {
+  right: 22px;
+  transform: rotate(18deg);
+}
+
+.ear {
+  transition: transform .3s cubic-bezier(.3, 1.6, .5, 1);
+}
+
+/* --- Руки --- */
+
+.arm {
+  position: absolute;
+  bottom: 14%;
+  width: 38px;
+  height: 64px;
+  border-radius: 50% 50% 45% 45%;
+  background: var(--b);
+  box-shadow: inset -6px -8px 12px rgba(20, 0, 80, .35);
+  transform-origin: 50% 12%;
+  transition: transform .35s cubic-bezier(.3, 1.6, .5, 1);
+}
+
+.arm.l {
+  left: -20px;
+  transform: rotate(14deg);
+}
+
+.arm.r {
+  right: -20px;
+  transform: rotate(-14deg);
+}
+
+/* --- Тело --- */
+
+.body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 48% 48% 44% 44%;
+  background: var(--b);
+  box-shadow:
+    inset -14px -18px 30px rgba(20, 0, 80, .38),
+    inset 10px 10px 24px rgba(255, 255, 255, .2),
+    0 34px 60px -20px var(--b);
+}
+
+.body.sq {
+  animation: sq .6s;
+}
+
+.body {
+  animation: brth 3.6s ease-in-out infinite;
+}
+
+.body.sq {
+  animation: sq .6s;
+}
+
+.body {
+  transition: box-shadow .6s;
+}
+
+/* --- Глаз: белок, зрачок, веко --- */
+
+.eye {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 122px;
+  height: 122px;
+  margin: -61px 0 0 -61px;
+  border-radius: 50%;
+  background: #fff;
+  border: 5px solid var(--d);
+  overflow: hidden;
+  box-shadow: inset 0 -10px 16px rgba(0, 0, 0, .16);
+}
+
+.pw {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transition: transform .12s linear;
+}
+
+.pu {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 50%;
+  background: #150d2e;
+  transition: transform .25s;
+  position: relative;
+}
+
+.pu::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.dil .pu {
+  transform: scale(1.35);
+}
+
+.pin .pu {
+  transform: scale(.5);
+}
+
+.pu.roll {
+  animation: rl 1.1s linear 2;
+}
+
+.noeye .pw {
+  display: none;
+}
+
+.lid {
+  position: absolute;
+  inset: -3px;
+  background: var(--b);
+  border-bottom: 4px solid var(--d);
+  transform: translateY(var(--l,-103%));
+  transition: transform .18s;
+}
+
+.pu::before {
+  content: "";
+  position: absolute;
+  right: 11px;
+  bottom: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .6);
+}
+
+/* --- Лицо: бровь, рот, щёки, слеза, пузырь, очки, «Zzz» --- */
+
+.brow {
+  position: absolute;
+  left: 50%;
+  top: 13%;
+  width: 88px;
+  height: 13px;
+  margin-left: -44px;
+  border-radius: 9px;
+  background: var(--d);
+  transition: transform .25s;
+  z-index: 2;
+}
+
+.mo {
+  position: absolute;
+  left: 50%;
+  bottom: 11%;
+  width: 36px;
+  height: 14px;
+  margin-left: -18px;
+  border-bottom: 5px solid var(--d);
+  border-radius: 0 0 30px 30px;
+  transition: all .2s;
+}
+
+.zz {
+  position: absolute;
+  right: -6px;
+  top: -8px;
+  font-size: 32px;
+  opacity: 0;
+  z-index: 3;
+}
+
+.tear {
+  position: absolute;
+  left: 30%;
+  top: 68%;
+  font-size: 22px;
+  opacity: 0;
+  z-index: 3;
+}
+
+.sn {
+  position: absolute;
+  left: 57%;
+  bottom: 15%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .75);
+  background: rgba(255, 255, 255, .18);
+  opacity: 0;
+  transform: scale(.3);
+  transform-origin: 0 100%;
+}
+
+.sg {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  font-size: 104px;
+  line-height: 1;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -260%) rotate(-12deg);
+  transition:
+    transform .45s cubic-bezier(.3, 1.7, .5, 1),
+    opacity .2s,
+    visibility 0s .45s;
+}
+
+.ck {
+  position: absolute;
+  bottom: 19%;
+  width: 32px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 92, 200, .6);
+  filter: blur(3px);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.ck.l {
+  left: 15%;
+}
+
+.ck.r {
+  right: 15%;
+}
+
+/* --- Убежавший зрачок (#fp) --- */
+
+#fp {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  display: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #150d2e;
+  cursor: pointer;
+  touch-action: none;
+  box-shadow: 0 0 0 3px #fff, 0 10px 24px rgba(0, 0, 0, .5);
+}
+
+#fp::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+}
+
+#fp::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* --- Настроения (data-m) --- */
+
+[data-m=ang] .brow {
+  transform: translateY(11px) rotate(-12deg);
+}
+
+[data-m=ang] {
+  --l: -32%;
+}
+
+[data-m=ang] .mo {
+  height: 0;
+  border-radius: 0;
+}
+
+[data-m=sus] .brow {
+  transform: translateY(5px) rotate(6deg);
+}
+
+[data-m=sus] {
+  --l: -48%;
+}
+
+[data-m=sus] .mo {
+  height: 0;
+  border-radius: 0;
+  transform: rotate(-6deg);
+}
+
+[data-m=sur] .brow {
+  transform: translateY(-14px);
+}
+
+[data-m=sur] .mo {
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border: 5px solid var(--d);
+  border-radius: 50%;
+}
+
+[data-m=sad] .brow {
+  transform: translateY(3px) rotate(10deg);
+}
+
+[data-m=sad] {
+  --l: -26%;
+}
+
+[data-m=sad] .mo {
+  border-bottom: 0;
+  border-top: 5px solid var(--d);
+  border-radius: 30px 30px 0 0;
+  bottom: 9%;
+}
+
+[data-m=sad] .tear {
+  opacity: 1;
+  animation: td 1.2s ease-in infinite;
+}
+
+[data-m=sleep] {
+  --l: 0%;
+}
+
+[data-m=sleep] .mo {
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border: 5px solid var(--d);
+  border-radius: 50%;
+}
+
+[data-m=sleep] .zz {
+  opacity: 1;
+  animation: zf 2s ease-in-out infinite;
+}
+
+[data-m=sleep] .fl {
+  animation: br 3s ease-in-out infinite;
+}
+
+[data-m=sleep] .sn {
+  animation: sb 3.2s ease-in-out infinite;
+}
+
+[data-m=lol] {
+  --l: -42%;
+}
+
+[data-m=lol] .brow {
+  transform: translateY(-8px) rotate(4deg);
+}
+
+[data-m=lol] .mo {
+  width: 46px;
+  height: 26px;
+  margin-left: -23px;
+  border: 5px solid var(--d);
+  border-top: 0;
+  border-radius: 0 0 40px 40px;
+  background: #3a1a8a;
+}
+
+[data-m=lol] .tear {
+  opacity: 1;
+  animation: td .6s ease-in infinite;
+}
+
+[data-m=sur] .ear.l {
+  transform: rotate(-32deg) translateY(-10px);
+}
+
+[data-m=sur] .ear.r {
+  transform: rotate(32deg) translateY(-10px);
+}
+
+[data-m=ang] .ear.l {
+  transform: rotate(-50deg);
+}
+
+[data-m=ang] .ear.r {
+  transform: rotate(50deg);
+}
+
+[data-m=sad] .ear.l,
+[data-m=sleep] .ear.l {
+  transform: rotate(-64deg) translateY(8px);
+}
+
+[data-m=sad] .ear.r,
+[data-m=sleep] .ear.r {
+  transform: rotate(64deg) translateY(8px);
+}
+
+[data-m=sur] .arm.l {
+  transform: rotate(115deg);
+}
+
+[data-m=sur] .arm.r {
+  transform: rotate(-115deg);
+}
+
+[data-m=ang] .arm.l {
+  transform: rotate(-8deg);
+}
+
+[data-m=ang] .arm.r {
+  transform: rotate(8deg);
+}
+
+[data-m=lol] .arm.l,
+[data-m=shy] .arm.l {
+  transform: rotate(-34deg);
+}
+
+[data-m=lol] .arm.r,
+[data-m=shy] .arm.r {
+  transform: rotate(34deg);
+}
+
+[data-m=shy] .ck,
+[data-m=lol] .ck {
+  opacity: 1;
+}
+
+[data-m=shy] {
+  --l: -30%;
+}
+
+[data-m=shy] .brow {
+  transform: translateY(2px) rotate(9deg);
+}
+
+[data-m=shy] .mo {
+  width: 20px;
+  margin-left: -10px;
+}
+
+/* --- Состояния: hold, wv, talk, cool, tk --- */
+
+.cool .sg {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -54%) rotate(0);
+  transition:
+    transform .45s cubic-bezier(.3, 1.7, .5, 1),
+    opacity .15s,
+    visibility 0s;
+}
+
+.tk .fl {
+  animation: tk .12s linear infinite;
+}
+
+.hold .arm.l {
+  transform: rotate(150deg);
+  animation: fa .22s ease-in-out infinite alternate;
+}
+
+.hold .arm.r {
+  transform: rotate(-150deg);
+  animation: fa .22s ease-in-out infinite alternate-reverse;
+}
+
+.wv .arm.r {
+  transform: rotate(-150deg);
+  animation: wvv .3s ease-in-out 6 alternate;
+}
+
+.talk .mo {
+  animation: mt .16s ease-in-out infinite alternate;
+}

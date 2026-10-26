@@ -1,0 +1,108 @@
+/* ============================================================
+   Сцены кнопки: самоуничтожение, свет, дискотека, копоть
+   ============================================================ */
+
+.cdn {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: min(46vw, 260px);
+  font-weight: 900;
+  color: #ff3b3b;
+  text-shadow: 0 0 40px #ff3b3b, 0 0 90px rgba(255, 59, 59, .6);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.cdn.pp {
+  animation: cpp .9s ease-out;
+}
+
+.soot .body {
+  box-shadow:
+    inset 0 0 50px 30px rgba(10, 6, 20, .82),
+    inset -14px -18px 30px rgba(20, 0, 80, .38),
+    0 34px 60px -20px var(--b);
+}
+
+.soot .ear,
+.soot .arm {
+  filter: brightness(.4);
+}
+
+#dk {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .6s;
+  background:
+    radial-gradient(
+      circle at var(--mx,50%) var(--my,30%),
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 60px,
+      rgba(2, 0, 10, .96) 200px);
+}
+
+.dark #dk {
+  opacity: 1;
+}
+
+.dark .bub {
+  z-index: 6;
+}
+
+.dark .eye {
+  box-shadow: 0 0 30px 8px rgba(139, 92, 255, .8);
+}
+
+.dsc {
+  position: fixed;
+  inset: -20%;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: .4;
+  background:
+    conic-gradient(
+      from var(--a),
+      #ff5cc8,
+      #8b5cff,
+      #2ee6c8,
+      #ffe14d,
+      #ff5cc8);
+  animation: spin 3s linear infinite, fi .5s both;
+}
+
+.dball {
+  position: fixed;
+  left: 50%;
+  top: -8px;
+  margin-left: -32px;
+  font-size: 64px;
+  line-height: 1;
+  z-index: 6;
+  pointer-events: none;
+  transform-origin: 50% -40px;
+  animation: bd .8s cubic-bezier(.3, 1.5, .5, 1) both, bsw 1.6s ease-in-out .8s infinite alternate;
+}
+
+.dn .fl {
+  animation: dnc .45s ease-in-out infinite alternate;
+}
+
+.dn .arm.l {
+  transform: rotate(130deg);
+  animation: fa .22s ease-in-out infinite alternate;
+}
+
+.dn .arm.r {
+  transform: rotate(-130deg);
+  animation: fa .22s ease-in-out infinite alternate-reverse;
+}
+
+.dn .pu {
+  animation: rl 1.1s linear infinite;
+}

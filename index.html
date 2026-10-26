@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0618">
+  <meta name="description" content="tw1xty — быстро, стабильно, иногда отвечает.">
+  <meta property="og:title" content="tw1xty">
+  <meta property="og:description" content="Быстро, стабильно, иногда отвечает.">
+  <title>tw1xty</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👁️%3C/text%3E%3C/svg%3E">
+
+  <!-- Стили подключаются в порядке каскада — порядок менять нельзя -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/background.css">
+  <link rel="stylesheet" href="css/mascot.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/scenes.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Фон: северное сияние + холсты для звёзд и искр -->
+  <div class="au"><i></i><i></i><i></i></div>
+  <canvas id="st"></canvas>
+  <canvas id="tr"></canvas>
+
+  <main>
+
+    <!-- Персонаж. data-m — текущее настроение (sleep, sur, ang, sad, sus, shy, lol) -->
+    <div class="mas" id="ms" data-m="sleep">
+      <div class="fl">
+        <div class="ear l"></div>
+        <div class="ear r"></div>
+        <div class="arm l"></div>
+        <div class="arm r"></div>
+
+        <div class="body">
+          <div class="brow"></div>
+          <div class="ck l"></div>
+          <div class="ck r"></div>
+
+          <div class="eye" id="ey">
+            <div class="pw" id="pw">
+              <div class="pu" id="pu"></div>
+            </div>
+            <div class="lid"></div>
+          </div>
+
+          <div class="tear">💧</div>
+          <div class="mo"></div>
+          <div class="sn"></div>
+          <div class="sg">🕶️</div>
+        </div>
+
+        <div class="zz">💤</div>
+      </div>
+    </div>
+
+    <!-- Облачко с репликами персонажа -->
+    <div class="bub" id="bb">Zzz…</div>
+
+    <!-- Имя: каждая буква — отдельный span (для анимации и реакций) -->
+    <h1 id="nm">
+      <span class="ch" style="--i:0">t</span><span class="ch" style="--i:1">w</span><span class="ch" style="--i:2">1</span><span class="ch" style="--i:3">x</span><span class="ch" style="--i:4">t</span><span class="ch" style="--i:5">y</span>
+    </h1>
+    <p class="sub">быстро · стабильно · иногда отвечает</p>
+
+    <!-- Ссылки. Чтобы поменять адрес или подпись — правь только здесь -->
+    <a class="lk" id="tg" href="https://t.me/zj3SWpkYEt" target="_blank" rel="noopener">
+      <div class="lg"><img class="ico" src="assets/img/telegram.svg" alt="Telegram" width="32" height="32"></div>
+      <div class="t">
+        <b>Telegram</b>
+        <span>@zj3SWpkYEt · тут точно отвечу (нет)</span>
+      </div>
+      <i>→</i>
+    </a>
+
+    <a class="lk" id="vpn" href="https://potokservice.com/r/FDJ7N75W" target="_blank" rel="noopener">
+      <div class="lg"><img class="logo" src="assets/img/vpn.png" alt="VPN" width="48" height="48"></div>
+      <div class="t">
+        <b>VPN</b>
+        <span>Чтобы тебя искали хуже, чем я</span>
+      </div>
+      <i>→</i>
+    </a>
+
+    <button class="lk" id="dc" type="button">
+      <div class="lg"><img class="ico" src="assets/img/discord.svg" alt="Discord" width="32" height="32"></div>
+      <div class="t">
+        <b>Discord</b>
+        <span>tw1xty · тап, чтобы скопировать</span>
+      </div>
+      <i>⧉</i>
+    </button>
+
+    <!-- Кнопка запускает одну из пяти случайных сцен (см. js/main.js) -->
+    <button class="bt" id="bt" type="button">🚫 НЕ НАЖИМАЙ</button>
+
+    <p class="ft" id="ft">ответ ожидается через <span id="cd"></span></p>
+
+  </main>
+
+  <!-- Служебные элементы: убежавший зрачок, тост, затемнение для сцены «свет выключили» -->
+  <div id="fp"></div>
+  <div class="toast" id="toast"></div>
+  <div id="dk"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

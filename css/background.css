@@ -1,0 +1,67 @@
+/* ============================================================
+   Фон: северное сияние, холсты звёзд и искр
+   ============================================================ */
+
+.au {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      520px 430px at 50% 170px,
+      rgba(123, 77, 255, .3),
+      transparent 70%);
+}
+
+.au i {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  animation: dr 16s ease-in-out infinite alternate;
+}
+
+.au i:nth-child(1) {
+  width: 420px;
+  height: 420px;
+  background: #8b5cff;
+  opacity: .34;
+  top: -140px;
+  right: -120px;
+}
+
+.au i:nth-child(2) {
+  width: 340px;
+  height: 340px;
+  background: #2ee6c8;
+  opacity: .18;
+  bottom: -120px;
+  left: -100px;
+  animation-delay: -6s;
+}
+
+.au i:nth-child(3) {
+  width: 280px;
+  height: 280px;
+  background: #ff5cc8;
+  opacity: .14;
+  top: 45%;
+  left: 25%;
+  animation-delay: -10s;
+}
+
+#st,
+#tr {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#st {
+  z-index: -1;
+}
+
+#tr {
+  z-index: 70;
+}
